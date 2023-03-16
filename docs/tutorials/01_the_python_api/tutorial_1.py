@@ -1,8 +1,9 @@
 import json
 
-import airo_blender as ab
 import bpy
 import numpy as np
+
+import airo_blender as ab
 
 # Create the cylinder
 bpy.ops.mesh.primitive_cylinder_add()

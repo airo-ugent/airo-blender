@@ -1,4 +1,5 @@
 import bpy
+
 from airo_blender.urdf import import_urdf
 
 bpy.ops.object.delete()  # Delete the default cube

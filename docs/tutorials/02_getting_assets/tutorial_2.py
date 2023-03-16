@@ -1,8 +1,9 @@
 import json
 
-import airo_blender as ab
 import bpy
 import numpy as np
+
+import airo_blender as ab
 
 # Delete the default cube
 bpy.ops.object.delete()

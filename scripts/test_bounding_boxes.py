@@ -1,5 +1,6 @@
-import airo_blender as ab
 import bpy
+
+import airo_blender as ab
 
 # TODO Refactor this into a real test.
 

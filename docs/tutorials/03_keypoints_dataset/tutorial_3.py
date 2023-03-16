@@ -3,13 +3,14 @@ import json
 import os
 import sys
 
-import airo_blender as ab
 import bpy
 import cv2
 import numpy as np
-from airo_blender.coco_parser import CocoImage, CocoKeypointAnnotation
 from bpy_extras.object_utils import world_to_camera_view
 from pycocotools import mask
+
+import airo_blender as ab
+from airo_blender.coco_parser import CocoImage, CocoKeypointAnnotation
 
 random_seed = 0
 

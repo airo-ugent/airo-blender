@@ -5,8 +5,9 @@ import os
 import subprocess
 import sys
 
-from airo_blender.coco_parser import CocoImage, CocoKeypointAnnotation, CocoKeypointCategory, CocoKeypoints
 from tqdm import tqdm
+
+from airo_blender.coco_parser import CocoImage, CocoKeypointAnnotation, CocoKeypointCategory, CocoKeypoints
 
 dataset_size = 2
 

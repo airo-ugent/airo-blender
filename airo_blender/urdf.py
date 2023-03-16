@@ -15,10 +15,11 @@ Implementation:
 """
 import os
 
-import airo_blender as ab
 import bpy
 import numpy as np
 import xmltodict
+
+import airo_blender as ab
 
 
 def parse_vector_string(vector_string: str) -> list[float]:
