@@ -72,3 +72,8 @@ As a result you can easily adopt only the parts you like.
 ### Why is airo-blender not part of airo-mono? 
 Blender requires a specific python version for each release. 
 Not all python version have a blender version and we did not feel like locking the python version of our mono repo to please blender, so we decided to make it a standalone repo that depends on the airo-mono repo.
+
+### Why the complicated Conda python stuff?
+We want to make it convenient to work with scripting for blender. Most developers are used to have a virtualenv/conda env that they can work in, install dependencies in etc. Having to always specify the blender python interpreter is a hassle and the blender python version is not complete so you need to do some additional steps (download c headers etc). 
+
+Blender [proposes](https://docs.blender.org/api/current/info_tips_and_tricks.html#bundled-python-extensions) to build blender manually with a conda env link instead, but building takes about 30m, so this approach of replacing the python folder in the blender directory inspired by this [post](https://stackoverflow.com/questions/70639689/how-to-use-the-anaconda-environment-on-blender) seemed more convenient.

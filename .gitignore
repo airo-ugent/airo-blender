@@ -3,3 +3,5 @@ blender/**
 **.png
 **.jpg
 **.egg-info
+**__pycache__/**
+**.pyc
