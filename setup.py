@@ -14,7 +14,9 @@ setuptools.setup(
         "tqdm",  # used to display progress bars
         "pydantic",  # for building dataset formats
         "opencv-python",
-        "fake-bpy-module-3.4" "airo-dataset-tools",  # bpy autocomplete  # for dataset generation
+        "zstandard",  # blender asset reading
+        "fake-bpy-module-3.4",  # bpy autocomplete
+        "airo-dataset-tools",  # for dataset generation
     ],
     packages=["airo_blender"],
 )
