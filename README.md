@@ -9,21 +9,25 @@ To get started, please see the [tutorials](docs/tutorials) directory after compl
 
 
 ## Installation
-> Currently this is a "development" installation, where we assume you have this directory cloned locally. We develop and test this package on Ubuntu.
 
-### Downloading Blender
-Download the latest version of [Blender](https://www.blender.org/download/), currently `3.4.1`.
-We provide the subdirectory `blender/` as a convenient but optional place to save and extract Blender. See the directory's [README.md](blender/README.md) for the expected directory structure after download.
+Clone this repo somewhere or add it as a submodule to your project. The airo-blender package depends on the airo-mono repo, which is added as a submodule in this repo for convenience. If you will use the airo-mono repo yourself, you should probably add it as a submodule to your repo yourself. If not, you can recursively clone this repo to already have a local clone of the mono repo as well.
 
-### Installing the `airo_blender` Python package
-Then, run the following commands from the `airo-blender` directory:
+To use this package you need at least a local installation of Blender. You can install this anywhere on your pc.
+Blender ships with its own python interpreter but we recommend replacing it with a conda environment to have an easier workflow.
+
+We provide a convenience script that will do both the above for you, if you want to use this, run the following commands:
+```bash
+bash <path-to-airo-blender>/bash_scripts/setup_blender <<< <path-to-your-conda-env> 
 ```
-./blender/blender-3.4.1-linux-x64/3.4/python/bin/python3.10 -m ensurepip
-./blender/blender-3.4.1-linux-x64/3.4/python/bin/pip3 install -e .
-```
-The first command installs `pip` for the Blender Python.
-The second command installs the `airo_blender` package into it. The `-e` option
 
+If you don't have a conda environment already, you can take inspiration from the `environment.yaml` file that is included in this repo.
+Make sure to update the paths of the airo-blender package and possibly of the airo-mono paths if you made it a top-level submodule.
+
+Make sure to create your conda environment with.
+``` conda env create -f environment.yaml```
+You can now use the path to this conda env in the bash script to install blender and link this conda env.
+
+#TODO: the above is probably completely unreadable, has to be improved...
 
 ## Philosophy
 This package is meant to be as lightweight and opt-in as possible.
@@ -64,3 +68,7 @@ In airo-blender, we prefer explaining the Blender Python API over hiding it.
 In the tutorials we show our workflow and the functions we use.
 We try to operate on the Blender data as statelessly as possible, with simple functions.
 As a result you can easily adopt only the parts you like.
+
+### Why is airo-blender not part of airo-mono? 
+Blender requires a specific python version for each release. 
+Not all python version have a blender version and we did not feel like locking the python version of our mono repo to please blender, so we decided to make it a standalone repo that depends on the airo-mono repo.
