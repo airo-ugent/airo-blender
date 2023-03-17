@@ -6,11 +6,11 @@ import sys
 import bpy
 import cv2
 import numpy as np
+from airo_dataset_tools.coco.coco_parser import CocoImage, CocoKeypointAnnotation
+from airo_dataset_tools.coco.segmentation_masks import BinarySegmentationMask
 from bpy_extras.object_utils import world_to_camera_view
-from pycocotools import mask
 
 import airo_blender as ab
-from airo_blender.coco_parser import CocoImage, CocoKeypointAnnotation
 
 random_seed = 0
 
@@ -20,12 +20,6 @@ if "--" in sys.argv:
     parser.add_argument("seed", type=int)
     args = parser.parse_known_args(argv)[0]
     random_seed = args.seed
-
-
-# TODO document pycocotools installation
-# requires adding Python.h etc to blender Python installation
-# https://blender.stackexchange.com/questions/81740/python-h-missing-in-blender-python
-# basically: download zip and copy contents of Include to include/python3.10
 
 # Set numpy random seed for reproducibility
 np.random.seed(random_seed)
@@ -207,25 +201,24 @@ os.rename(segmentation_path, segmentation_path_new)
 # np.where(segmentation_mask == True) # get the coordinates
 
 segmentation_mask = cv2.imread(segmentation_path_new, cv2.IMREAD_GRAYSCALE)
-mask_coords = np.where(segmentation_mask == 255)
-area = mask_coords[0].shape[0]  # number of pixels
-x_min = np.min(mask_coords[1])
-y_min = np.min(mask_coords[0])
-x_max = np.max(mask_coords[1])
-y_max = np.max(mask_coords[0])
-bbox_width = x_max - x_min
-bbox_height = y_max - y_min
-coco_bbox = (x_min, y_min, bbox_width, bbox_height)
+segmentation_mask = segmentation_mask > 0
 
-rle = mask.encode(np.asfortranarray(segmentation_mask))
-coco_segmentation = {"counts": rle["counts"].decode("utf-8"), "size": rle["size"]}
+
+segmentation = BinarySegmentationMask(segmentation_mask)
+encoded_rle = segmentation.as_compressed_rle
+
+bbox = segmentation.bbox
+print(bbox)
+x_min, y_min, width, height = bbox
+x_max = x_min + width
+y_max = y_min + height
 
 # drawing the rectangle
 image_bgr = cv2.imread(image_path_new)
-cv2.rectangle(image_bgr, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
+cv2.rectangle(image_bgr, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 255, 0), 2)
 image_annotated_path = os.path.join(output_dir, f"{image_name}_annotated.png")
 # Draw a circle in the top left corner of the bounding box
-cv2.circle(image_bgr, (x_min, y_min), 5, (0, 0, 255), -1)
+cv2.circle(image_bgr, (int(x_min), int(y_min)), 5, (0, 0, 255), -1)
 cv2.imwrite(image_annotated_path, image_bgr)
 
 
@@ -263,9 +256,9 @@ annotation = CocoKeypointAnnotation(
     image_id=random_seed,
     keypoints=coco_keypoints,
     num_keypoints=num_labeled_keypoints,
-    segmentation=coco_segmentation,
-    area=area,
-    bbox=coco_bbox,
+    segmentation=encoded_rle,
+    area=segmentation.area,
+    bbox=bbox,
     iscrowd=0,
 )
 

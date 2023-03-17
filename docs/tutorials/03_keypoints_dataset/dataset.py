@@ -5,9 +5,13 @@ import os
 import subprocess
 import sys
 
+from airo_dataset_tools.coco.coco_parser import (
+    CocoImage,
+    CocoKeypointAnnotation,
+    CocoKeypointCategory,
+    CocoKeypointsDataset,
+)
 from tqdm import tqdm
-
-from airo_blender.coco_parser import CocoImage, CocoKeypointAnnotation, CocoKeypointCategory, CocoKeypoints
 
 dataset_size = 2
 
@@ -74,7 +78,7 @@ for seed in range(dataset_size):
     annotations.extend(image_annotations)
 
 
-labels = CocoKeypoints(categories=categories, images=images, annotations=annotations)
+labels = CocoKeypointsDataset(categories=categories, images=images, annotations=annotations)
 annotations_json = "annotations.json"
 with open(annotations_json, "w") as file:
     json.dump(labels.dict(exclude_none=True), file, indent=4)
