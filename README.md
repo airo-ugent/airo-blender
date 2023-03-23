@@ -30,7 +30,7 @@ Make sure to create your conda environment with.
 ``` conda env create -f environment.yaml```
 You can now use the path to this conda env in the bash script to install blender and link this conda env.
 
-Additionally, you can run`source bash_scripts/add_blender_to_path.sh` script from the parent directory of your blender installation, to add the blender executable to the path of your terminal. 
+Additionally, you can run`source bash_scripts/add_blender_to_path.sh` script from the parent directory of your blender installation, to add the blender executable to the path of your terminal.
 
 #TODO: the above is probably completely unreadable, has to be improved...
 
