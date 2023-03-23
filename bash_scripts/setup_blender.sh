@@ -1,5 +1,7 @@
 #!/bin/sh
 # Description: Download and extract Blender to the current directory
+# and replace the python interpreter with a conda environment
+# Must be called from the parent directory of the blender installation.
 
 read -p "Enter path of python executable you want to link to blender: " conda_env_path
 # check if path exists

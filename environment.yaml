@@ -5,4 +5,5 @@ dependencies:
   - python=3.10
   - pip
   - pip:
+    - airo-mono/airo-dataset-tools/
     - -e .

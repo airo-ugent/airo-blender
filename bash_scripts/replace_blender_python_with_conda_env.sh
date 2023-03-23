@@ -1,5 +1,7 @@
 #!/bin/bash
 # Description: Change the python interpreter to a conda environment.
+# Must be called from the parent directory of the blender installation.
+
 read -p "Enter path of the conda environment you want to link to blender: " conda_env_path
 # check if dir exists
 if [ ! -d "$conda_env_path" ]; then
