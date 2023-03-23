@@ -1,0 +1,1 @@
+Suggested location to install the blender distribution. but you can choose any place you want. Don't forget to run the bash scripts from this folder.
