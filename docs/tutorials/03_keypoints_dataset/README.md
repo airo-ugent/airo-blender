@@ -37,7 +37,7 @@ The most popular format I'm aware of is [COCO](https://cocodataset.org/#format-d
 
 Complying to a dataset format can be buggy and tedious work.
 For that reason, we implemented a [pydantic](https://docs.pydantic.dev/) parser for COCO.
-You can find it in `airo_blender/coco_parser.py`.
+You can find it in `airo_mono/airo_dataset_tools/coco_parser.py`.
 An example is the class defined for images:
 ```python
 class CocoImage(BaseModel):
