@@ -7,7 +7,7 @@ generate synthetic data for robotic manipulation.
 
 To get started, please see the [tutorials](docs/tutorials) directory after completing the installation. :notebook_with_decorative_cover:
 
-## Quick Installation (with Conda environment)
+## Quick Installation
 
 This installation method requires **Anaconda** to be installed on your system.
 We will replace the Python environment Blender ships with, with a new Conda environment.
@@ -45,20 +45,20 @@ cd blender
 bash ../bash_scripts/setup_blender <<< <path-to-your-conda-env>
 ```
 
-Finally, to have the `blender` command available in your terminal, you need to add its directory to `PATH`, to do temporarily (only for the current terminal) add it, run:
+Finally, to have the `blender` command available in your terminal, you need to add its directory to `PATH`, to temporarily add it (only for the current terminal), run:
 
 ```bash
 export PATH="$PATH:$PWD/blender-3.4.1-linux-x64"
 ```
 
-To start Blender, you can now run the `blender` command in the current terminal.
-To add it permanently, read [adding_blender_to_bashrc.md](docs/adding_blender_to_bashrc.md)
+
 
 To test your installation, you can run the script of the first tutorial:
 ```
 blender -P ../docs/tutorials/01_the_python_api/tutorial_1.py
 ```
 
+To add the `blender` command permanently, read [adding_blender_to_bashrc.md](docs/adding_blender_to_bashrc.md)
 
 ## Philosophy
 
