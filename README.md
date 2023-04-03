@@ -42,7 +42,7 @@ Run the following script to download Blender 3.4.1 and to replace its Python env
 
 ```bash
 cd blender
-bash ../bash_scripts/setup_blender <<< <path-to-your-conda-env>
+bash ../bash_scripts/setup_blender.sh <<< <path-to-your-conda-env>
 ```
 
 Finally, to have the `blender` command available in your terminal, you need to add its directory to `PATH`, to temporarily add it (only for the current terminal), run:
