@@ -17,7 +17,7 @@ if [ ! -d "$blender_python_interpreter_path" ]; then
     exit 1
 fi
 # check if dir is a symlink
-if [! -L "$blender_python_interpreter_path"]; then
+if [ ! -L "$blender_python_interpreter_path" ]; then
     # if it is not a symlink, rename it for backup
     echo "renaming the original blender python folder"
     mv "$blender_python_interpreter_path" "$blender_python_interpreter_path.blender"
